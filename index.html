@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HBD Nuraeni!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;700&display=swap"rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>>
+
+    <!-- AOS -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Animate CSS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div id="cameraModal" class="camera-modal">
+
+        <div class="camera-box">
+
+            <video id="video" autoplay playsinline></video>
+
+            <canvas id="canvas"></canvas>
+
+            <div id="countdown">3</div>
+
+            <div id="flash"></div>
+
+            <button id="closeCamera">✕</button>
+
+        </div>
+
+    </div>
+
+    <div class="background"></div>
+
+    <div class="paper">
+
+        <div class="tape"></div>
+
+        <div class="left">
+
+            <div class="photostrip">
+
+                <div class="photo">
+                    <img id="photo1" src="assets/n-18.jpeg">
+                </div>
+
+                <div class="photo">
+                    <img id="photo2" src="assets/n-17.jpeg">
+                </div>
+
+                <div class="photo">
+                    <img id="photo3" src="assets/n-19.jpeg">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="center">
+
+            <h1>
+                Happy Birthday Nuraeni Sayang!
+            </h1>
+
+            <p class="subtitle">
+
+                Semoga semua impian kamu tercapai. Diberikan kemudahan dalam belajar jerman dan tembus ausbildung bidang
+                kesehatan di jerman aamiin!
+
+                <br>
+
+                Semua impian kamu tercapai, sehat selalu, bahagia selalu, dan semua doa menjadi kenyataan ✨
+
+            </p>
+
+            <button id="start">
+
+                📸 Foto dulu disini
+
+            </button>
+
+            <p class="footer">
+
+                Made with DNH ❤️
+
+            </p>
+
+        </div>
+
+        <div class="right">
+
+            <img src="assets/phone.png" class="phone">
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+
+    <!-- MAKE A WISH -->
+
+    <!-- ========================= -->
+
+    <section class="wish-section">
+
+        <h2>
+
+            🎂 Make A Wish
+
+        </h2>
+
+        <p>
+
+            Tutup mata sebentar...
+
+            <br>
+
+            lalu tiup lilinnya ✨
+
+        </p>
+
+        <!-- Cake -->
+
+        <div id="cakeArea">
+
+            <div class="cake3d">
+
+                <!-- Layer Atas -->
+                <div class="cake-top"></div>
+
+                <!-- Cream -->
+                <div class="cream"></div>
+
+                <!-- Layer Tengah -->
+                <div class="cake-body"></div>
+
+                <!-- Shadow -->
+                <div class="cake-shadow"></div>
+
+                <!-- Candles -->
+
+                <div class="candles">
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button id="blow" style="margin-top: -60px;">
+
+            💨 Tiup Lilin
+
+        </button>
+
+    </section>
+
+    <div id="birthdayModal" class="birthday-modal">
+
+        <div class="birthday-card">
+
+            <div class="birthday-icon">
+                🎂
+            </div>
+
+            <h2>Happy Birthday!</h2>
+
+            <p>
+
+                Selamat ulang tahun ❤️
+
+                <br><br>
+
+                Semoga semua impianmu tercapai,
+                sehat selalu,
+                bahagia selalu,
+                dan semua doa menjadi kenyataan ✨
+
+            </p>
+
+            <div class="birthday-buttons">
+
+                <button id="continueBtn">
+
+                    🎁 Lanjut
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <center>
+        <div class="invitation-card" style="margin-bottom: 50px;">
+            <div class="top-header">
+                <span>JULY 13TH 2026</span>
+                <span>CIKARANG, BKS</span>
+            </div>
+
+            <div class="main-title">
+                JOIN ULTAH NYA!<br>
+                IT'S PARTY TIME!
+            </div>
+
+            <div class="content-grid">
+
+                <div class="col-left">
+                    <div class="col-title">
+                        BIRTHDAY<br>PARTY
+                    </div>
+                    <div class="text-content">
+
+                        <p>Di momen perayaan ulang tahun Nuraeni yang ke-22 ini, hati kami dipenuhi dengan rasa syukur
+                            yang mendalam. Waktu seolah berlari begitu cepat, membawa Nuraeni melewati berbagai kisah,
+                            tantangan, dan kebahagiaan yang membentuknya menjadi sosok yang kita kenal dan sayangi hari
+                            ini.</p>
+
+                        <p>Terima kasih yang setulus-tulusnya kami ucapkan kepada kalian semua. Kalian adalah kepingan
+                            berharga dalam perjalanan hidup Nuraeni. Terima kasih telah hadir, memberikan tawa di saat
+                            sedih, serta menjadi pendengar yang setia di saat ia membutuhkan. Kehadiran kalian dalam
+                            hidup Nuraeni adalah salah satu anugerah terindah yang ia miliki.</p>
+
+                        <p>Dalam doa dan harapan kami, semoga di usia ke-22 ini, Nuraeni terus tumbuh menjadi pribadi
+                            yang lebih bijaksana, tangguh, dan senantiasa memancarkan kebaikan bagi sekitarnya. Semoga
+                            pintu-pintu keberkahan selalu terbuka lebar untuk setiap langkahnya, dan impian-impian yang
+                            ia gantungkan tinggi di langit segera menemukan jalannya untuk terwujud.</p>
+
+                    </div>
+                </div>
+
+                <div class="col-mid">
+                    <div class="photo-container">
+                        <img src="assets/n-16.jpeg" alt="Birthday Girl">
+                    </div>
+                    <div class="mid-celebrate">
+                        LET'S<br>CELEBRATE
+                    </div>
+                    <div class="name-section">
+                        <span class="cursive-name">Nuraeni's</span>
+                        <span class="birthday-text">BIRTHDAY</span>
+                    </div>
+                    <div class="date-text">
+                        13. 07. 2026
+                    </div>
+                </div>
+
+                <div class="col-right">
+                    <div class="col-title">
+                        BIRTHDAY<br>TIMELINE
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <i class="fa-solid fa-car timeline-icon"></i>
+                            <span class="timeline-text">KEDATANGAN</span>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fa-solid fa-spa timeline-icon"></i>
+                            <span class="timeline-text">DISKUSI SERU</span>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fa-solid fa-gift timeline-icon"></i>
+                            <span class="timeline-text">GAMES DAN SANTAI-SANTAI</span>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fa-solid fa-camera timeline-icon"></i>
+                            <span class="timeline-text">PHOTOSHOOT</span>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fa-solid fa-cake-candles timeline-icon"></i>
+                            <span class="timeline-text">CUT THE CAKE &<br>LET'S PARTY</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </center>
+
+    <!-- ========================= -->
+
+    <!-- LIBRARY -->
+
+    <!-- ========================= -->
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

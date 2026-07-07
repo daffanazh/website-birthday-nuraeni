@@ -1,0 +1,2369 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+overflow-x:hidden;
+
+overflow-y:auto;
+
+min-height:100vh;
+
+background:linear-gradient(
+135deg,
+#fff6cf,
+#ffdce8,
+#dff6ff
+);
+
+}
+.background{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:
+radial-gradient(circle at top left,#fff5c8,transparent 35%),
+radial-gradient(circle at bottom right,#d8f8ff,transparent 35%);
+
+animation:bgMove 10s infinite alternate;
+
+}
+
+@keyframes bgMove{
+
+from{
+transform:scale(1);
+}
+
+to{
+
+transform:scale(1.05);
+
+}
+
+}
+
+.paper{
+
+width:1200px;
+
+height:720px;
+
+background:white;
+
+border-radius:25px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.2);
+
+display:flex;
+
+position:relative;
+
+overflow:hidden;
+
+animation:paperFloat 5s ease-in-out infinite;
+
+margin:80px auto 40px;
+
+}
+
+@keyframes paperFloat{
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+.tape{
+
+position:absolute;
+
+width:140px;
+
+height:35px;
+
+background:#ffe89b;
+
+top:-10px;
+
+left:50%;
+
+transform:translateX(-50%) rotate(-4deg);
+
+opacity:.8;
+
+}
+
+.left{
+
+width:25%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.photostrip{
+
+background:#1b1b1b;
+
+padding:18px;
+
+border-radius:20px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+transform:rotate(-6deg);
+
+transition:.5s;
+
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+
+}
+
+.photostrip:hover{
+
+transform:rotate(-3deg) scale(1.03);
+
+}
+
+.photo{
+
+width:180px;
+height:180px;
+
+background:#eee;
+
+border-radius:10px;
+
+overflow:hidden;
+
+}
+
+.photo img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+transition:.5s;
+
+}
+
+.photo:hover img{
+
+transform:scale(1.1);
+
+}
+
+.center{
+
+flex:1;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+}
+
+.center h1{
+
+font-size:68px;
+
+font-family:Pacifico;
+
+color:#ff4d8d;
+
+margin-bottom:25px;
+
+}
+
+.subtitle{
+
+font-size:22px;
+
+text-align:center;
+
+line-height:40px;
+
+color:#666;
+
+margin-bottom:50px;
+
+}
+
+#start{
+
+width:320px;
+
+height:75px;
+
+border:none;
+
+border-radius:60px;
+
+background:linear-gradient(90deg,#ff5c8a,#ff9d45);
+
+color:white;
+
+font-size:24px;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(255,90,140,.35);
+
+}
+
+#start:hover{
+
+transform:translateY(-8px) scale(1.05);
+
+}
+
+.footer{
+
+margin-top:35px;
+
+color:#888;
+
+font-size:17px;
+
+}
+
+.right{
+
+width:25%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.phone{
+
+width:210px;
+
+animation:phoneMove 3s ease-in-out infinite;
+
+filter:drop-shadow(0 20px 30px rgba(0,0,0,.25));
+
+}
+
+@keyframes phoneMove{
+
+50%{
+
+transform:rotate(8deg);
+
+}
+
+}
+
+@media(max-width:900px){
+
+.paper{
+
+width:95%;
+height:auto;
+
+padding:30px;
+
+flex-direction:column;
+
+}
+
+.left,.right{
+
+width:100%;
+
+}
+
+.photostrip{
+
+flex-direction:row;
+
+transform:none;
+
+margin-bottom:20px;
+
+}
+
+.photo{
+
+width:100px;
+height:100px;
+
+}
+
+.center h1{
+
+font-size:42px;
+
+}
+
+.subtitle{
+
+font-size:18px;
+
+line-height:32px;
+
+}
+
+.phone{
+
+width:120px;
+
+margin-top:30px;
+
+}
+
+}
+
+/* =======================
+CAMERA MODAL
+======================= */
+
+.camera-modal{
+
+position:fixed;
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.8);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+
+}
+
+.camera-box{
+
+position:relative;
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+
+}
+
+video{
+
+width:700px;
+
+border-radius:15px;
+
+display:block;
+
+}
+
+canvas{
+
+display:none;
+
+}
+
+#countdown{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:120px;
+
+font-weight:bold;
+
+color:white;
+
+text-shadow:0 0 20px black;
+
+display:none;
+
+}
+
+#flash{
+
+position:absolute;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:white;
+
+opacity:0;
+
+pointer-events:none;
+
+}
+
+.flash-animation{
+
+animation:flash .4s;
+
+}
+
+@keyframes flash{
+
+0%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+}
+
+}
+
+#closeCamera{
+
+position:absolute;
+
+top:10px;
+right:10px;
+
+width:40px;
+height:40px;
+
+border:none;
+
+border-radius:50%;
+
+background:#ff5b7f;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+/* =======================================================
+PART 2A
+MAKE A WISH
+======================================================= */
+
+.wish-section{
+
+width:100%;
+
+min-height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+padding:120px 20px;
+
+position:relative;
+
+}
+
+.wish-section h2{
+
+font-family:"Pacifico";
+
+font-size:64px;
+
+color:var(--pink);
+
+margin-bottom:15px;
+
+}
+
+.wish-section p{
+
+text-align:center;
+
+color:#666;
+
+font-size:20px;
+
+line-height:36px;
+
+margin-bottom: -90px;
+
+}
+
+/* ===========================
+CAKE AREA
+=========================== */
+
+#cakeArea{
+
+width:420px;
+
+height:260px;
+
+position:relative;
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-start;
+
+margin:15px auto 30px;
+
+}
+
+/* =====================================
+CAKE 3D
+===================================== */
+
+.cream{
+
+position:absolute;
+
+top:70px;
+
+width:260px;
+height:24px;
+
+background:
+
+repeating-radial-gradient(
+
+circle,
+
+white 0 8px,
+
+#ffe7ef 9px 16px
+
+);
+
+border-radius:20px;
+
+z-index:4;
+
+}
+
+.cakeBounce{
+
+animation:bounceCake .6s ease;
+
+}
+
+@keyframes bounceCake{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+40%{
+
+transform:translateY(-18px);
+
+}
+
+70%{
+
+transform:translateY(5px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+.cake-shadow{
+
+position:absolute;
+
+bottom:-18px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:220px;
+height:28px;
+
+background:
+
+rgba(0,0,0,.18);
+
+filter:blur(12px);
+
+border-radius:50%;
+
+}
+
+#cakeArea{
+
+width:420px;
+height:420px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+position:relative;
+
+margin:50px auto;
+
+}
+
+.cake3d{
+
+width:260px;
+height:180px;
+
+position:relative;
+
+animation:floatCake 4s ease-in-out infinite;
+
+}
+
+.cake-top{
+
+position:absolute;
+
+top:45px;
+
+width:260px;
+height:34px;
+
+background:
+
+linear-gradient(
+
+#fff3c0,
+
+#ffe18d
+
+);
+
+border-radius:30px;
+
+z-index:3;
+
+}
+
+.cake-body{
+
+position:absolute;
+
+bottom:0;
+
+width:260px;
+height:120px;
+
+border-radius:
+0 0
+40px 40px;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#ffb4c8,
+
+#ff8eb3
+
+);
+
+box-shadow:
+
+inset 0 -10px 15px rgba(255,255,255,.2),
+
+inset 0 10px 20px rgba(0,0,0,.08),
+
+0 25px 40px rgba(0,0,0,.18);
+
+}
+@keyframes floatCake{
+
+50%{
+
+transform:
+translateY(-10px);
+
+}
+
+}
+
+/* ===========================
+CANDLES
+=========================== */
+
+.candles{
+
+position:absolute;
+
+top:0;
+
+width:100%;
+
+display:flex;
+
+justify-content:space-evenly;
+
+z-index:20;
+
+}
+
+.candle{
+
+width:14px;
+
+height:72px;
+
+border-radius:20px;
+
+background:
+
+repeating-linear-gradient(
+
+45deg,
+
+white,
+
+white 5px,
+
+#ffd5e4 5px,
+
+#ffd5e4 10px
+
+);
+
+position:relative;
+
+transform-origin:bottom;
+
+animation:sway 2.2s ease-in-out infinite;
+
+}
+
+.candle:nth-child(1){
+
+animation-delay:0s;
+
+}
+
+.candle:nth-child(2){
+
+animation-delay:.3s;
+
+}
+
+.candle:nth-child(3){
+
+animation-delay:.6s;
+
+}
+
+.candle:nth-child(4){
+
+animation-delay:.9s;
+
+}
+
+.candle:nth-child(5){
+
+animation-delay:1.2s;
+
+}
+
+@keyframes sway{
+
+0%{
+
+transform:rotate(-3deg);
+
+}
+
+50%{
+
+transform:rotate(3deg);
+
+}
+
+100%{
+
+transform:rotate(-3deg);
+
+}
+
+}
+
+/* ===========================
+SWING
+=========================== */
+
+@keyframes swing{
+
+0%{
+
+transform:
+rotate(-2deg);
+
+}
+
+50%{
+
+transform:
+rotate(2deg);
+
+}
+
+100%{
+
+transform:
+rotate(-2deg);
+
+}
+
+}
+
+/* ===========================
+FLAME
+=========================== */
+
+.flame{
+
+width:18px;
+
+height:28px;
+
+position:absolute;
+
+left:50%;
+
+top:-22px;
+
+transform:translateX(-50%);
+
+background:
+
+radial-gradient(
+
+ellipse at center,
+
+#fff8b5 10%,
+
+#ffd54f 35%,
+
+orange 70%,
+
+transparent
+
+);
+
+border-radius:
+
+50%
+
+50%
+
+45%
+
+45%;
+
+animation:
+
+flicker .12s infinite alternate;
+
+filter:
+
+drop-shadow(0 0 8px orange)
+
+drop-shadow(0 0 18px gold)
+
+drop-shadow(0 0 30px orange);
+
+}
+
+@keyframes flicker{
+
+from{
+
+transform:
+
+translateX(-50%)
+
+scale(1)
+
+rotate(-2deg);
+
+}
+
+to{
+
+transform:
+
+translateX(-50%)
+
+scale(.82)
+
+rotate(4deg);
+
+}
+
+}
+
+/* ===========================
+GLOW
+=========================== */
+
+#cakeArea::before{
+
+content:"";
+
+position:absolute;
+
+width:340px;
+
+height:90px;
+
+bottom:12px;
+
+background:
+
+radial-gradient(circle,
+
+rgba(255,180,180,.45),
+
+transparent 70%);
+
+filter:blur(30px);
+
+z-index:-1;
+
+}
+
+/* ===========================
+BLOW BUTTON
+=========================== */
+
+#blow{
+
+border:none;
+
+padding:18px 60px;
+
+border-radius:60px;
+
+cursor:pointer;
+
+font-size:22px;
+
+font-weight:600;
+
+color:white;
+
+background:
+
+linear-gradient(
+90deg,
+#ff6fa9,
+#ffb347);
+
+box-shadow:
+
+0 18px 35px rgba(255,111,169,.35);
+
+transition:.35s;
+
+}
+
+#blow:hover{
+
+transform:
+
+translateY(-5px)
+
+scale(1.05);
+
+}
+
+/* ===========================
+FLOATING STARS
+=========================== */
+
+.wish-section::before{
+
+content:"✨";
+
+position:absolute;
+
+left:8%;
+
+top:20%;
+
+font-size:32px;
+
+animation:starFloat 5s infinite;
+
+}
+
+.wish-section::after{
+
+content:"⭐";
+
+position:absolute;
+
+right:8%;
+
+bottom:20%;
+
+font-size:28px;
+
+animation:starFloat 6s infinite;
+
+}
+
+@keyframes starFloat{
+
+50%{
+
+transform:
+
+translateY(-15px)
+
+rotate(10deg);
+
+}
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+@media(max-width:768px){
+    .wish-section{
+        padding: 80px 20px;
+    }
+
+    .wish-section h2{
+        font-size: 42px;
+    }
+
+    .wish-section p{
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    #cakeArea{
+        width: 320px;
+        height: 360px;
+    }
+
+    .cake{
+        width: 240px;
+    }
+
+    .candles{
+        width: 220px; /* Diperlebar agar hampir menutupi seluruh lebar kue (240px) */
+        top: 40px;
+        left: 50%; /* Menarik elemen ke tengah */
+        transform: translateX(-50%); /* Memastikan posisi benar-benar di tengah kue */
+        display: flex; /* Mengaktifkan flexbox */
+        justify-content: space-evenly; /* Menyebarkan lilin secara merata dari ujung ke ujung */
+        position: absolute; 
+    }
+
+    .flame{
+        width: 12px;
+        height: 18px;
+    }
+
+    #blow{
+        width: 100%;
+        max-width: 320px;
+        font-size: 18px;
+    }
+}
+
+/* =======================================================
+PART 2B-1
+BLOW EFFECT
+======================================================= */
+
+/* ===========================
+FLAME OFF
+=========================== */
+
+.flame.out{
+
+opacity:0;
+
+transform:translateX(-50%) scale(0);
+
+transition:.4s;
+
+}
+
+@keyframes flameOut{
+
+0%{
+
+opacity:1;
+
+transform:
+translateX(-50%)
+scale(1);
+
+filter:
+drop-shadow(0 0 18px orange)
+drop-shadow(0 0 25px gold);
+
+}
+
+40%{
+
+transform:
+translateX(-50%)
+scale(.7)
+rotate(15deg);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translateX(-50%)
+translateY(-12px)
+scale(.1);
+
+filter:none;
+
+}
+
+}
+
+/* ===========================
+SMOKE
+=========================== */
+
+.smoke{
+
+position:absolute;
+
+width:18px;
+
+height:18px;
+
+left:50%;
+
+top:-22px;
+
+transform:translateX(-50%);
+
+pointer-events:none;
+
+opacity:0;
+
+}
+
+.smoke::before,
+.smoke::after{
+
+content:"";
+
+position:absolute;
+
+border-radius:50%;
+
+background:
+
+rgba(170,170,170,.65);
+
+}
+
+.smoke::before{
+
+width:18px;
+height:18px;
+
+left:0;
+top:0;
+
+}
+
+.smoke::after{
+
+width:12px;
+height:12px;
+
+left:10px;
+top:8px;
+
+}
+
+.smoke.show{
+
+animation:smokeRise 2.2s forwards;
+
+}
+
+@keyframes smokeRise{
+
+0%{
+
+opacity:0;
+
+transform:
+translate(-50%,0)
+scale(.2);
+
+}
+
+15%{
+
+opacity:.8;
+
+}
+
+50%{
+
+opacity:.6;
+
+transform:
+translate(-45%,-30px)
+scale(1);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translate(-40%,-90px)
+scale(1.8);
+
+}
+
+}
+
+/* ===========================
+BLOW WIND
+=========================== */
+
+.wind{
+
+position:absolute;
+
+width:120px;
+
+height:4px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.95),
+transparent);
+
+opacity:0;
+
+pointer-events:none;
+
+}
+
+.wind.show{
+
+animation:windMove .7s ease-out;
+
+}
+
+@keyframes windMove{
+
+from{
+
+left:-140px;
+
+opacity:0;
+
+}
+
+30%{
+
+opacity:1;
+
+}
+
+to{
+
+left:420px;
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+CAKE GLOW
+=========================== */
+
+#cakeArea.glow{
+
+animation:
+
+cakeGlow 2s infinite alternate;
+
+}
+
+@keyframes cakeGlow{
+
+from{
+
+filter:
+
+drop-shadow(
+0 0 10px rgba(255,200,80,.35));
+
+}
+
+to{
+
+filter:
+
+drop-shadow(
+0 0 35px rgba(255,200,80,.9));
+
+}
+
+}
+
+#cakeArea.dark{
+
+filter:brightness(.95);
+
+transition:.5s;
+
+}
+
+/* ===========================
+BLOW BUTTON
+=========================== */
+
+#blow.active{
+
+background:
+
+linear-gradient(
+90deg,
+#7dd87d,
+#4caf50);
+
+transform:scale(1.05);
+
+}
+
+#blow:disabled{
+
+cursor:not-allowed;
+
+opacity:.8;
+
+}
+
+/* ===========================
+CANDLE SHAKE
+=========================== */
+
+.candle.blowing{
+
+animation:
+
+shakeBlow .15s linear 6;
+
+}
+
+@keyframes shakeBlow{
+
+0%{
+
+transform:rotate(-6deg);
+
+}
+
+50%{
+
+transform:rotate(6deg);
+
+}
+
+100%{
+
+transform:rotate(-6deg);
+
+}
+
+}
+
+/* ===========================
+LITTLE SPARK
+=========================== */
+
+.spark{
+
+position:absolute;
+
+width:6px;
+
+height:6px;
+
+background:#ffd54f;
+
+border-radius:50%;
+
+opacity:0;
+
+pointer-events:none;
+
+}
+
+.spark.show{
+
+animation:
+
+sparkFly .8s ease-out forwards;
+
+}
+
+@keyframes sparkFly{
+
+from{
+
+opacity:1;
+
+transform:
+translate(0,0)
+scale(1);
+
+}
+
+to{
+
+opacity:0;
+
+transform:
+translate(
+calc(-25px + 50px * var(--x)),
+calc(-20px - 40px * var(--y))
+)
+scale(0);
+
+}
+
+}
+
+/* ===========================
+MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.wind{
+
+width:80px;
+
+}
+
+.smoke{
+
+transform:
+translateX(-50%)
+scale(.8);
+
+}
+
+}
+
+/* =======================================================
+PART 2B-2
+CELEBRATION EFFECT
+======================================================= */
+
+/* ===========================
+CELEBRATION OVERLAY
+=========================== */
+
+.celebration{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+background:rgba(0,0,0,.25);
+
+backdrop-filter:blur(4px);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.6s;
+
+z-index:9999;
+
+}
+
+.celebration.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+.celebration h1{
+
+font-family:"Pacifico";
+
+font-size:90px;
+
+color:#fff;
+
+text-shadow:
+0 0 15px #ff4fa0,
+0 0 35px #ff9bd0,
+0 0 60px gold;
+
+animation:celebratePop 1s ease;
+
+}
+
+.celebration p{
+
+margin-top:15px;
+
+font-size:24px;
+
+color:#fff;
+
+}
+
+@keyframes celebratePop{
+
+0%{
+
+transform:scale(.3);
+
+opacity:0;
+
+}
+
+60%{
+
+transform:scale(1.15);
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/* ===========================
+CONFETTI
+=========================== */
+
+.confetti-piece{
+
+position:fixed;
+
+width:10px;
+
+height:18px;
+
+border-radius:3px;
+
+pointer-events:none;
+
+animation:confettiFall linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+from{
+
+transform:
+translateY(-120px)
+rotate(0deg);
+
+opacity:1;
+
+}
+
+to{
+
+transform:
+translateY(120vh)
+rotate(1080deg);
+
+opacity:1;
+
+}
+
+}
+
+/* ===========================
+FIREWORK PARTICLE
+=========================== */
+
+.firework{
+
+position:fixed;
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+pointer-events:none;
+
+animation:explode 1.3s ease-out forwards;
+
+}
+
+@keyframes explode{
+
+from{
+
+transform:
+translate(0,0)
+scale(1);
+
+opacity:1;
+
+}
+
+to{
+
+transform:
+
+translate(
+
+calc(var(--dx) * 1px),
+
+calc(var(--dy) * 1px)
+
+)
+
+scale(0);
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+GOLD SPARKLE
+=========================== */
+
+.sparkle{
+
+position:fixed;
+
+width:14px;
+
+height:14px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(circle,#fff,#ffe082,#ffca28);
+
+box-shadow:
+
+0 0 15px gold,
+
+0 0 30px gold;
+
+pointer-events:none;
+
+animation:sparkleMove 1.2s ease-out forwards;
+
+}
+
+@keyframes sparkleMove{
+
+from{
+
+opacity:1;
+
+transform:
+
+scale(0);
+
+}
+
+to{
+
+opacity:0;
+
+transform:
+
+translateY(-80px)
+
+scale(2);
+
+}
+
+}
+
+/* ===========================
+GIFT BOX
+=========================== */
+
+.gift{
+
+position:relative;
+
+width:160px;
+
+margin-top:60px;
+
+animation:giftFloat 3s infinite ease-in-out;
+
+}
+
+.gift img{
+
+width:100%;
+
+}
+
+.gift.open{
+
+animation:giftOpen .8s ease forwards;
+
+}
+
+@keyframes giftFloat{
+
+50%{
+
+transform:
+
+translateY(-12px);
+
+}
+
+}
+
+@keyframes giftOpen{
+
+from{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.15);
+
+}
+
+to{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ===========================
+LIGHT FLASH
+=========================== */
+
+.flash-screen{
+
+position:fixed;
+
+inset:0;
+
+background:white;
+
+opacity:0;
+
+pointer-events:none;
+
+z-index:9998;
+
+}
+
+.flash-screen.show{
+
+animation:screenFlash .7s ease;
+
+}
+
+@keyframes screenFlash{
+
+0%{
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:.85;
+
+}
+
+100%{
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+FLOATING STARS
+=========================== */
+
+.star{
+
+position:fixed;
+
+font-size:22px;
+
+color:#fff176;
+
+pointer-events:none;
+
+animation:starFly 4s linear infinite;
+
+}
+
+@keyframes starFly{
+
+from{
+
+transform:
+
+translateY(0)
+
+rotate(0);
+
+opacity:1;
+
+}
+
+to{
+
+transform:
+
+translateY(-120px)
+
+rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+GLOW BACKGROUND
+=========================== */
+
+body.party{
+
+animation:partyGlow 3s infinite alternate;
+
+}
+
+@keyframes partyGlow{
+
+from{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#fff8ef,
+
+#ffe5ef,
+
+#eef8ff
+
+);
+
+}
+
+to{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#ffe7a6,
+
+#ffc7dd,
+
+#c8f0ff
+
+);
+
+}
+
+}
+
+/* ===========================
+MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.celebration h1{
+
+font-size:52px;
+
+}
+
+.celebration p{
+
+font-size:18px;
+
+}
+
+.gift{
+
+width:120px;
+
+}
+
+}
+
+/* BACKGROUND */
+
+.birthday-modal{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(8px);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.4s;
+
+z-index:9999;
+
+}
+
+/* SHOW */
+
+.birthday-modal.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+/* CARD */
+
+.birthday-card{
+
+width:420px;
+
+max-width:90%;
+
+background:white;
+
+border-radius:28px;
+
+padding:40px;
+
+text-align:center;
+
+box-shadow:
+
+0 20px 70px rgba(0,0,0,.2);
+
+animation:pop .6s;
+
+}
+
+/* ICON */
+
+.birthday-icon{
+
+font-size:60px;
+
+margin-bottom:15px;
+
+}
+
+/* TITLE */
+
+.birthday-card h2{
+
+font-family:'Pacifico';
+
+color:#ff4b8a;
+
+font-size:48px;
+
+}
+
+/* TEXT */
+
+.birthday-card p{
+
+color:#666;
+
+line-height:1.8;
+
+margin:20px 0;
+
+}
+
+/* BUTTON */
+
+.birthday-buttons button{
+
+padding:16px 40px;
+
+border:none;
+
+border-radius:50px;
+
+cursor:pointer;
+
+font-size:18px;
+
+color:white;
+
+font-weight:bold;
+
+background:linear-gradient(90deg,#ff4f8b,#ffb347);
+
+transition:.3s;
+
+}
+
+.birthday-buttons button:hover{
+
+transform:scale(1.05);
+
+}
+
+@keyframes pop{
+
+from{
+
+transform:scale(.7);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+.invitation-card {
+background-color: #fff;
+max-width: 800px;
+width: 100%;
+padding: 30px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+font-family: 'Lora', serif; /* Font untuk teks paragraf */
+}
+
+/* --- HEADER BAGIAN ATAS --- */
+.top-header {
+display: flex;
+justify-content: space-between;
+font-family: 'Playfair Display', serif;
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+padding: 10px 0;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+text-transform: uppercase;
+}
+
+/* --- JUDUL UTAMA --- */
+.main-title {
+font-family: 'Playfair Display', serif;
+text-align: center;
+font-size: 32px;
+font-weight: 900;
+letter-spacing: 2px;
+line-height: 1.2;
+padding: 20px 0;
+border-bottom: 4px double #1a1a1a;
+}
+
+/* --- GRID LAYOUT UNTUK 3 KOLOM --- */
+.content-grid {
+display: grid;
+grid-template-columns: 1fr 1.4fr 1fr;
+margin-top: 10px;
+}
+
+/* Border pemisah antar kolom */
+.col-left {
+padding-right: 20px;
+border-right: 1px solid #1a1a1a;
+}
+
+.col-mid {
+padding: 0 20px;
+}
+
+.col-right {
+padding-left: 20px;
+border-left: 1px solid #1a1a1a;
+}
+
+/* Styling Judul Kolom */
+.col-title {
+font-family: 'Playfair Display', serif;
+text-align: center;
+font-size: 20px;
+font-weight: 900;
+letter-spacing: 1.5px;
+line-height: 1.2;
+padding-bottom: 10px;
+border-bottom: 1px solid #1a1a1a;
+margin-bottom: 15px;
+}
+
+/* --- KOLOM KIRI (TEKS UNDANGAN) --- */
+.text-content p {
+font-size: 11.5px;
+line-height: 1.6;
+margin-bottom: 15px;
+text-align: justify;
+}
+.text-content p strong {
+font-weight: 600;
+}
+
+/* --- KOLOM TENGAH (FOTO & INFO) --- */
+.photo-container {
+width: 100%;
+height: 350px;
+background-color: #eee;
+margin-bottom: 15px;
+overflow: hidden;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.photo-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.mid-celebrate {
+font-family: 'Playfair Display', serif;
+text-align: center;
+font-size: 22px;
+font-weight: 900;
+letter-spacing: 2px;
+line-height: 1.2;
+padding: 10px 0;
+border-top: 1px solid #1a1a1a;
+border-bottom: 4px double #1a1a1a;
+margin-bottom: 20px;
+}
+
+.name-section {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.cursive-name {
+font-family: 'Great Vibes', cursive;
+font-size: 42px;
+line-height: 0.8;
+margin-bottom: 5px;
+display: block;
+}
+
+.birthday-text {
+font-family: 'Playfair Display', serif;
+font-size: 20px;
+font-weight: 700;
+letter-spacing: 3px;
+}
+
+.date-text {
+text-align: center;
+font-family: 'Playfair Display', serif;
+font-weight: 900;
+font-size: 22px;
+margin-bottom: 20px;
+letter-spacing: 2px;
+}
+
+.location-text {
+text-align: center;
+font-size: 12px;
+line-height: 1.6;
+}
+
+/* --- KOLOM KANAN (TIMELINE) --- */
+.timeline {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 20px;
+}
+
+.timeline-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+position: relative;
+margin-bottom: 30px;
+width: 100%;
+}
+
+/* Garis vertikal penghubung */
+.timeline-item:not(:last-child)::after {
+content: '';
+position: absolute;
+bottom: -25px;
+width: 1px;
+height: 20px;
+background-color: #1a1a1a;
+}
+
+.timeline-icon {
+font-size: 24px;
+margin-bottom: 8px;
+color: #1a1a1a;
+}
+
+.timeline-text {
+font-family: 'Playfair Display', serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+/* Responsif untuk layar kecil (HP) */
+@media (max-width: 768px) {
+.content-grid {
+grid-template-columns: 1fr;
+}
+.col-left, .col-right {
+border: none;
+padding: 0;
+}
+.col-mid {
+padding: 20px 0;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+margin: 20px 0;
+}
+}
